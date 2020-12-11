@@ -19,6 +19,9 @@ namespace UserRegistrationTest
             Console.WriteLine("Enter your mobile number");
             string mobileNumber = Console.ReadLine();
             Console.WriteLine(userValidator.ValidateMobileNumber(mobileNumber));
+            Console.WriteLine("Enter your password");
+            string password = Console.ReadLine();
+            Console.WriteLine(userValidator.ValidatePassword(password));
         }
     }
 }
