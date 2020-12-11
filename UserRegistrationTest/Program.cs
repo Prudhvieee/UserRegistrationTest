@@ -16,6 +16,9 @@ namespace UserRegistrationTest
             Console.WriteLine("Enter Email");
             string email = Console.ReadLine();
             Console.WriteLine(userValidator.ValidateEmail(email));
+            Console.WriteLine("Enter your mobile number");
+            string mobileNumber = Console.ReadLine();
+            Console.WriteLine(userValidator.ValidateMobileNumber(mobileNumber));
         }
     }
 }

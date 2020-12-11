@@ -9,6 +9,7 @@ namespace UserRegistrationTest
         //Constants
         public const string REGEX_NAME = "^[A-Z][a-zA-Z]{2,}";
         public const string REGEX_EMAIL = "^[a-z]{3,}[.][a-z]*[@][a-z]{2}[.][a-z]{2}[.][a-z]*$";
+        public const string REGEX_MOBILE_NUMBER = "^[0-9]{2}[ ][0-9]{10}$";
         /// <summary>
         /// Validates the first name.
         /// </summary>
@@ -35,6 +36,15 @@ namespace UserRegistrationTest
         public bool ValidateEmail(string email)
         {
             return Regex.IsMatch(email, REGEX_EMAIL);
+        }
+        /// <summary>
+        /// Validates the mobile number.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns></returns>
+        public bool ValidateMobileNumber(string number)
+        {
+            return Regex.IsMatch(number, REGEX_MOBILE_NUMBER);
         }
     }
 }
