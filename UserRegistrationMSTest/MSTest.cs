@@ -206,27 +206,5 @@ namespace UserRegistrationMSTest
             //Assert
             Assert.IsTrue(result);
         }
-        /// <summary>
-        /// Givens the proper sample emails should return true.
-        /// </summary>
-        /// <param name="email">The email.</param>
-        [TestMethod]
-        [DataRow("abc@yahoo.com")]
-        [DataRow("abc-100@yahoo.com")]
-        [DataRow("abc.100@yahoo.com")]
-        [DataRow("abc111@abc.com")]
-        [DataRow("abc.100@abc.com.au")]
-        [DataRow("abc-100@abc.net")]
-        [DataRow("abc@1.com")]
-        [DataRow("abc@gmail.com.com")]
-        [DataRow("abc+100@gmail.com")]
-        public void GivenProperSampleEmails_ShouldReturnTrue(string email)
-        {
-            //Act
-            bool result = userValidator.ValidateEmail(email);
-
-            //Assert
-            Assert.IsTrue(result);
-        }
     }
 }
