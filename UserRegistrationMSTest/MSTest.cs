@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UserRegistrationTest;
 
 namespace UserRegistrationMSTest
 {
@@ -6,7 +7,6 @@ namespace UserRegistrationMSTest
     public class MSTest
     {
         UserRegistrationTest.UserValidator userValidator = new UserRegistrationTest.UserValidator();
-
         /// <summary>
         /// Givens the proper first name should return true.
         /// </summary>
@@ -14,7 +14,7 @@ namespace UserRegistrationMSTest
         public void GivenProperFirstName_ShouldReturnTrue()
         {
             //Arrange
-            string firstName = "Prudhvi";
+            string firstName = "Chetan";
 
             //Act
             bool result = userValidator.ValidateFirstName(firstName);
@@ -28,17 +28,22 @@ namespace UserRegistrationMSTest
         [TestMethod]
         public void GivenImproperFirstName_ShouldReturnFalse()
         {
-            //Arrange
-            string firstName = "prudhvi";
+            try
+            {
+                //Arrange
+                string firstName = "chetan";
 
-            //Act
-            bool result = userValidator.ValidateLastName(firstName);
-
-            //Assert
-            Assert.IsFalse(result);
+                //Act
+                bool result = userValidator.ValidateLastName(firstName);
+            }
+            catch (UserRegisterationCustomException exception)
+            {
+                Assert.AreEqual("Invalid First Name", exception.Message);
+            }
 
         }
 
+        /// <summary>
         /// <summary>
         /// Givens the proper last name should return true.
         /// </summary>
@@ -60,14 +65,20 @@ namespace UserRegistrationMSTest
         [TestMethod]
         public void GivenImproperLastName_ShouldReturnFalse()
         {
-            //Arrange
-            string lastName = "kohli";
+            try
+            {
+                //Arrange
+                string lastName = "kohli";
 
-            //Act
-            bool result = userValidator.ValidateLastName(lastName);
+                //Act
+                bool result = userValidator.ValidateLastName(lastName);
+            }
 
-            //Assert
-            Assert.IsFalse(result);
+            catch (UserRegisterationCustomException exception)
+            {
+                Assert.AreEqual("Invalid Last Name", exception.Message);
+            }
+
         }
         /// <summary>
         /// Givens the proper email should return true.
@@ -76,7 +87,7 @@ namespace UserRegistrationMSTest
         public void GivenProperEmail_ShouldReturnTrue()
         {
             //Arrange
-            string email = "bprudhvi2028@gmail.com";
+            string email = "bmchetan2028@gmail.com";
 
             //Act
             bool result = userValidator.ValidateEmail(email);
@@ -90,14 +101,18 @@ namespace UserRegistrationMSTest
         [TestMethod]
         public void GivenImproperEmail_ShouldReturnFalse()
         {
-            //Arrange
-            string email = ".bprudhvi2028@gmail.com";
+            try
+            {
+                //Arrange
+                string email = ".bmchetan2028@gmail.com";
 
-            //Act
-            bool result = userValidator.ValidateEmail(email);
-
-            //Assert
-            Assert.IsFalse(result);
+                //Act
+                bool result = userValidator.ValidateEmail(email);
+            }
+            catch (UserRegisterationCustomException exception)
+            {
+                Assert.AreEqual("Invalid Email", exception.Message);
+            }
         }
         /// <summary>
         /// Givens the proper password should return true.
@@ -106,7 +121,7 @@ namespace UserRegistrationMSTest
         public void GivenProperPassword_ShouldReturnTrue()
         {
             //Arrange
-            string password = "Prudhvi@1bgm89";
+            string password = "Akbar@1bgm89";
 
             //Act
             bool result = userValidator.ValidatePassword(password);
@@ -120,14 +135,19 @@ namespace UserRegistrationMSTest
         [TestMethod]
         public void GivenImproperPassword_ShouldReturnFalse()
         {
-            //Arrange
-            string password = "prudhvi@woqyeoi";
+            try
+            {
+                //Arrange
+                string password = "akbar@woqyeoi";
 
-            //Act
-            bool result = userValidator.ValidatePassword(password);
+                //Act
+                bool result = userValidator.ValidatePassword(password);
+            }
+            catch (UserRegisterationCustomException exception)
+            {
+                Assert.AreEqual("Invalid Password", exception.Message);
+            }
 
-            //Assert
-            Assert.IsFalse(result);
         }
         /// <summary>
         /// Givens the proper mobile number should return true.
@@ -136,7 +156,7 @@ namespace UserRegistrationMSTest
         public void GivenProperMobileNumber_ShouldReturnTrue()
         {
             //Arrange
-            string number = "91 7306376547";
+            string number = "91 8951604950";
 
             //Act
             bool result = userValidator.ValidateMobileNumber(number);
@@ -150,14 +170,41 @@ namespace UserRegistrationMSTest
         [TestMethod]
         public void GivenImproperMobileNumber_ShouldReturnFalse()
         {
-            //Arrange
-            string number = "91 895160495";
+            try
+            {
+                //Arrange
+                string number = "91 895160495";
 
+                //Act
+                bool result = userValidator.ValidateMobileNumber(number);
+            }
+            catch (UserRegisterationCustomException exception)
+            {
+                Assert.AreEqual("Invalid Mobile Number", exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// Givens the proper sample emails should return true.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        [TestMethod]
+        [DataRow("abc@yahoo.com")]
+        [DataRow("abc-100@yahoo.com")]
+        [DataRow("abc.100@yahoo.com")]
+        [DataRow("abc111@abc.com")]
+        [DataRow("abc.100@abc.com.au")]
+        [DataRow("abc-100@abc.net")]
+        [DataRow("abc@1.com")]
+        [DataRow("abc@gmail.com.com")]
+        [DataRow("abc+100@gmail.com")]
+        public void GivenProperSampleEmails_ShouldReturnTrue(string email)
+        {
             //Act
-            bool result = userValidator.ValidateMobileNumber(number);
+            bool result = userValidator.ValidateEmail(email);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.IsTrue(result);
         }
         /// <summary>
         /// Givens the proper sample emails should return true.
