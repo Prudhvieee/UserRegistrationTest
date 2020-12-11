@@ -9,13 +9,13 @@ namespace UserRegistrationTest
         //Constants
         public const string REGEX_NAME = "^[A-Z][a-zA-Z]{2,}";
         /// <summary>
-        /// Validates the first name.
+        /// Validates the last name.
         /// </summary>
-        /// <param name="firstName">The first name.</param>
+        /// <param name="lastName">The last name.</param>
         /// <returns></returns>
-        public bool ValidateFirstName(string firstName)
+        public bool ValidateLastName(string lastName)
         {
-            return Regex.IsMatch(firstName, REGEX_NAME);
+            return Regex.IsMatch(lastName, REGEX_NAME);
         }
     }
 }
